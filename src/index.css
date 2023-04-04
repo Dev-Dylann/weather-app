@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  height: -webkit-fill-available;
+}
+
+body,
+#root {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+.loader {
+  background-image: conic-gradient(transparent 25%, #eee);
+}
