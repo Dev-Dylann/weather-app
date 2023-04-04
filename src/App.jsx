@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from "./components/Header"
 import Current from "./components/Current"
 import Forecast from "./components/Forecast"
@@ -10,14 +10,35 @@ function App() {
   const API_KEY = `e62621ab5ac748dc9ae63627230304`;
 
   const [search, setSearch] = useState(``);
+  const [suggestions, setSuggestions] = useState([]);
   const [weather, setWeather] = useState([]);
   const [datetime, setDatetime] = useState(``);
   const [isDay, setIsDay] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchWeather = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      try {
+        const response = await weatherApi.get(`/search.json?key=${API_KEY}&q=${search}`);
+
+        setSuggestions(response.data);
+      } catch(err) {
+        if (err.response) {
+          console.log(err.response.data.error.message);
+        } else {
+          console.log(err.message)
+        }
+      }
+    }
+
+    if (search.length) {
+      fetchSuggestions();
+    }
+
+  }, [search])
+
+  const fetchWeather = async (query) => {
     setFetchError(null);
     setIsLoading(true);
 
@@ -25,11 +46,11 @@ function App() {
     setDatetime(date);
 
     try {
-      const response = await weatherApi.get(`/forecast.json?key=${API_KEY}&q=${search}&days=7&aqi=no&alerts=no`);
+      const response = await weatherApi.get(`/forecast.json?key=${API_KEY}&q=${query}&days=7&aqi=no&alerts=no`);
 
       console.log(response.data);
       setWeather(response.data);
-      setIsDay(response.data.current.is_day)
+      setIsDay(response.data.current.is_day);
       setSearch(``);
     } catch(err) {
         if (err.response) {
@@ -51,6 +72,8 @@ function App() {
       <Header 
         search={search} 
         setSearch={setSearch}
+        suggestions={suggestions}
+        isDay={isDay}
         location={weather.location}
         datetime={datetime}
         isLoading={isLoading}

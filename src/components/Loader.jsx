@@ -1,5 +1,5 @@
 import React from 'react'
-import icon from "../../public/weather-icon.svg"
+import icon from "/weather-icon.svg"
 
 const Loader = () => {
   return (

@@ -1,9 +1,13 @@
 import React from 'react'
-import { FaSearch, FaQuestion } from "react-icons/fa"
+import { FaSearch } from "react-icons/fa"
+import Suggestions from "./Suggestions"
 
-const Search = ({ search, setSearch, fetchWeather }) => {
+const Search = ({ search, setSearch, suggestions, isDay,  fetchWeather }) => {
   return (
-    <form action="" className='flex gap-2' onSubmit={fetchWeather}>
+    <form action="" className='flex gap-2 relative' onSubmit={(e) => {
+      e.preventDefault();
+      fetchWeather(search);
+    }}>
         <label htmlFor="searchInput" className='absolute -left-[1000px]'>
             Search City or Location
         </label>
@@ -18,6 +22,15 @@ const Search = ({ search, setSearch, fetchWeather }) => {
         />
 
         <button type="submit" className="border border-inherit hover:bg-[#eee] hover:text-black rounded-md p-4 grid place-content-center"><FaSearch /></button>
+
+        {search.length && suggestions.length && (
+          <Suggestions 
+            suggestions={suggestions}
+            fetchWeather={fetchWeather}
+            isDay={isDay}
+          />
+        )}
+
     </form>
   )
 }
