@@ -46,7 +46,7 @@ function App() {
   }
 
   return (
-    <div className="font-poppins transition-all duration-350 min-h-screen bg-cover bg-fixed" style={isDay ? {backgroundImage: `url("./src/assets/day-2.jpg")`} : {backgroundImage: `url("./src/assets/night-2.jpg")`, color: "#eee", borderColor: "#eee"}}>
+    <div className="font-poppins transition-all duration-350 min-h-screen bg-cover bg-fixed" style={isDay ? {backgroundImage: `url("./day-2.jpg")`} : {backgroundImage: `url("./night-2.jpg")`, color: "#eee", borderColor: "#eee"}}>
       
       <Header 
         search={search} 
