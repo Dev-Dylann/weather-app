@@ -10,12 +10,34 @@ function App() {
   const API_KEY = `e62621ab5ac748dc9ae63627230304`;
 
   const [search, setSearch] = useState(``);
+  const [locationBtn, setLocationBtn] = useState(true);
   const [suggestions, setSuggestions] = useState([]);
   const [weather, setWeather] = useState([]);
   const [datetime, setDatetime] = useState(``);
   const [isDay, setIsDay] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const checkLocation = () => {
+      navigator.geolocation.getCurrentPosition(getCoords, locationDenied);
+    };
+    
+    const getCoords = (coordinates) => {
+      const lat = coordinates.coords.latitude.toFixed(3);
+      const long = coordinates.coords.longitude.toFixed(3);
+
+      const coords = `${lat},${long}`;
+      fetchWeather(coords);
+    };
+    
+    const locationDenied = (err) => {
+      console.log(err.message);
+      console.log(`Location Denied`);
+    };
+    
+    checkLocation();
+  }, [locationBtn])
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -41,6 +63,7 @@ function App() {
   const fetchWeather = async (query) => {
     setFetchError(null);
     setIsLoading(true);
+    setSuggestions([]);
 
     const date = format(new Date(), `yyyy-MM-dd, pp`);
     setDatetime(date);
@@ -72,6 +95,8 @@ function App() {
       <Header 
         search={search} 
         setSearch={setSearch}
+        locationBtn={locationBtn} 
+        setLocationBtn={setLocationBtn}
         suggestions={suggestions}
         isDay={isDay}
         location={weather.location}

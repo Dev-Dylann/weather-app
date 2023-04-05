@@ -1,8 +1,8 @@
 import React from 'react'
-import { FaSearch } from "react-icons/fa"
 import Suggestions from "./Suggestions"
+import { FaSearch, FaMapMarkerAlt } from "react-icons/fa"
 
-const Search = ({ search, setSearch, suggestions, isDay,  fetchWeather }) => {
+const Search = ({ search, setSearch, locationBtn, setLocationBtn, suggestions, isDay,  fetchWeather }) => {
   return (
     <form action="" className='flex gap-2 relative' onSubmit={(e) => {
       e.preventDefault();
@@ -22,6 +22,8 @@ const Search = ({ search, setSearch, suggestions, isDay,  fetchWeather }) => {
         />
 
         <button type="submit" className="border border-inherit hover:bg-[#eee] hover:text-black rounded-md p-4 grid place-content-center"><FaSearch /></button>
+
+        <button type="button" title='Search my location' onClick={() => setLocationBtn(!locationBtn)} className="border border-inherit bg-[#eee] text-black hover:bg-[#071724] hover:text-[#eee] rounded-md p-4 grid place-content-center"><FaMapMarkerAlt /></button>
 
         {search.length && suggestions.length && (
           <Suggestions 

@@ -5,7 +5,7 @@ const SuggestionsList = ({ suggestion, fetchWeather }) => {
     const query = `${suggestion.name}, ${suggestion.region}`;
 
   return (
-    <li className='py-2' 
+    <li className='py-2 cursor-pointer' 
         onClick={() => fetchWeather(query)}
     >
 

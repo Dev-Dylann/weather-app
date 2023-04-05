@@ -1,12 +1,14 @@
 import React from 'react'
 import Search from "./Search"
 
-const Header = ({ search, setSearch, suggestions, isDay,  location, datetime, isLoading, fetchWeather, fetchError }) => {
+const Header = ({ search, setSearch, locationBtn, setLocationBtn, suggestions, isDay,  location, datetime, isLoading, fetchWeather, fetchError }) => {
   return (
     <header className='sticky z-20 bg-transparent backdrop-blur-md top-0 left-0 flex flex-col gap-2 p-4'>
         <Search 
             search={search} 
             setSearch={setSearch}
+            locationBtn={locationBtn}
+            setLocationBtn={setLocationBtn} 
             suggestions={suggestions}
             isDay={isDay}
             fetchWeather={fetchWeather}
