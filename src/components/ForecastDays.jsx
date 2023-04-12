@@ -13,10 +13,10 @@ const ForecastDays = ({ future }) => {
   }
 
   return (
-    <div className='p-3 font-lg flex justify-between items-center shadow-lg rounded-md'>
+    <div className='p-3 md:px-5 lg:px-8 md:text-xl lg:text-md flex justify-between items-center shadow-lg rounded-md'>
         <span className='font-bold'>{formatDate(future.date)}</span>
 
-        <img src={future.day.condition.icon} alt="icon" className='w-[40px]' />
+        <img src={future.day.condition.icon} alt="icon" className='w-[40px] md:w-[60px] lg:w-[40px]' />
 
         <p>
           <span className='font-light'>{Math.round(future.day.mintemp_c)}</span>
