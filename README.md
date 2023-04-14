@@ -8,8 +8,8 @@ Get current weather report and forecasts for your location or any location you s
 
 ## Features
 
-- Accurate weather information with icons and temperature in Celsius
-- Get users location and displays weather report and forecasts for that location (device location service must be turned on location permission granted)
+- Accurate weather information with temperature in Celsius and icons to show current weather condition
+- Gets user's location and displays weather report and forecasts for that location (device location service must be turned on location permission granted)
 - Day/Night theme based on the local time of searched location 
 
 ## Usage
@@ -22,7 +22,8 @@ Get current weather report and forecasts for your location or any location you s
 
 - Semantic HTML5 markup
 - [Tailwind](https://tailwindcss.com) - CSS Framework
-- [Vite + React](https://vitejs.dev/)
+- [Vite](https://vitejs.dev/) + [React](https://react.dev/)
 - [Axios](https://axios-http.com/docs/intro)
 - API from [WeatherAPI](https://www.weatherapi.com/)
 - Font from [Google Fonts](https://fonts.google.com/)
+- Packages: [React Icons](https://www.npmjs.com/package/react-icons), [Date Fns](https://www.npmjs.com/package/date-fns)
